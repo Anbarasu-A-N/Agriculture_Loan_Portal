@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "upload.path",
+    "type": "java.lang.String",
+    "description": "A description for 'upload.path'"
+  },
+  {
+    "name": "application.security.jwt.secret_key",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.secret_key'"
+  },
+  {
+    "name": "admin.username",
+    "type": "java.lang.String",
+    "description": "A description for 'admin.username'"
+  },
+  {
+    "name": "admin.password",
+    "type": "java.lang.String",
+    "description": "A description for 'admin.password'"
+  }
+]}
