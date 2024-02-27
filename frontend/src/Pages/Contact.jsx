@@ -125,7 +125,7 @@ const Contact = () => {
         </center>
       </div>
       <div className="contact-form">
-        <h2 id='contact'>Contact Me</h2>
+        <h2 id='contact'>Contact Us</h2>
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
