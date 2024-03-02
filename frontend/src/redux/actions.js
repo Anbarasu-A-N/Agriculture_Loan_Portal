@@ -1,5 +1,15 @@
 
 
+// actions.js
+
+export const setVerificationSuccess = (success) => ({
+  type: 'SET_VERIFICATION_SUCCESS',
+  payload: success,
+});
+
+export const verificationfalse = () => ({
+  type: 'VERIFICATION_FALSE',
+});
 
 // actions.js
 

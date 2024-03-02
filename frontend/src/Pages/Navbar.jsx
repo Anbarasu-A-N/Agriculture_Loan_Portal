@@ -57,6 +57,9 @@ const Navbar = () => {
                   <Link id="usernavbarsub" to="/applyloan">Apply Online</Link>
                 </li>
                 <li>
+                  <Link id="usernavbarsub" to="/payment">Payment</Link>
+                </li>
+                <li>
                   <Link id="usernavbarsub" to="/form">View PDF</Link>
                 </li>
                 <li>
