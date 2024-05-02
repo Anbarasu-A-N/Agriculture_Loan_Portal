@@ -28,7 +28,7 @@ public class UserCLI implements CommandLineRunner {
         if (usersRepository.count() > 0)
             return;
         var user = Users.builder()
-                .userid(1)
+                .userId(1)
                 .firstName("Allsmart Admin")
                 .lastName("Access")
                 .age(20)
@@ -37,6 +37,7 @@ public class UserCLI implements CommandLineRunner {
                 .gender("Male")
                 .otp(null)
                 .profileImagePath("Allsmart.jpg")
+                .countryCode("+91")
                 .mobile(6382797079L)
                 .role(com.example.springapp.enumerated.Role.ADMIN)
                 .build();

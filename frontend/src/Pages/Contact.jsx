@@ -88,12 +88,14 @@ const Contact = () => {
     }
 
     setLoading(true);
+    const userId = localStorage.getItem('userId'); // Get userId from localStorage
 
     axios.post(`${BASE_URL}/sendMailWithAttachmentAndSave`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${token}` // Pass the token in the request headers
       },
+      params: { userId }, // Pass userId as a query parameter only for POST method
     })
       .then((response) => {
         console.log(response.data);

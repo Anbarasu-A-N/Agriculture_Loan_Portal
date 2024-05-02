@@ -14,22 +14,22 @@ import com.example.springapp.repository.UserRepository;
 @Service
 public class UserService {
     @Autowired
-    UserRepository ur;
+    UserRepository userRepository;
      
      
      //@SuppressWarnings("null")
      public boolean AddUser(Users ue)
      {
-          ur.save(ue);
+          userRepository.save(ue);
           return true;
      }
      public List<Users> getUser()
      {
-          return ur.findAll();
+          return userRepository.findAll();
      }
-     //@SuppressWarnings("null")
-     public Optional<Users> getById(Long id)
-     {
-    	 return ur.findById(id);
+     
+
+     public Optional<String> findEmailIdByUserId(Integer userId) {
+          return userRepository.findEmailIdByUserId(userId);
      }
 }

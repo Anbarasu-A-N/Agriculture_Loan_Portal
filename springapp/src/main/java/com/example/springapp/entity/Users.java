@@ -31,8 +31,8 @@ import lombok.NoArgsConstructor;
 public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="userid")
-    private Integer userid;
+    @Column(name="userId")
+    private Integer userId;
 
     @Column(name="FirstName", nullable = false)
     private String firstName;
@@ -51,6 +51,9 @@ public class Users implements UserDetails {
 
     @Column(name="Password", nullable = false)
     private String password;
+
+    @Column(name="CountryCode", nullable = false)
+    private String countryCode;
 
     @Column(name="Mobile", nullable = false)
     private long mobile;

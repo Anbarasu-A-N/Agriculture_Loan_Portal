@@ -11,12 +11,19 @@ export const verificationfalse = () => ({
   type: 'VERIFICATION_FALSE',
 });
 
+export const setUserId = (userId) => ({ // Define setUserId action
+  type: 'SET_USER_ID',
+  payload: userId,
+});
+
+
 // actions.js
 
 export const loginSuccess = (emailId, token) => ({
   type: 'LOGIN_SUCCESS',
   payload: { emailId, token },
 });
+
 
 export const logout = () => ({
   type: 'LOGOUT',

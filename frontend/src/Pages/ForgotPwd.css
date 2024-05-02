@@ -72,3 +72,29 @@ button[id="forgot"]:hover {
 h1[id='forgot-h1']{
   font-family: 'Times New Roman', Times, serif;
 }
+
+img[id=forgothide]{
+  height: 18px;
+  margin-top: 10px;
+  margin-right: 4.5px;
+  width: 18px;
+  margin-bottom: 0px;
+
+}
+
+.forgotpassword-toggle-icon {
+  position: absolute;
+  top: 45%;
+  right: 50px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+}
+
+.forgotpassword-toggle-icon.visible {
+  color: #4CAF50; /* Change color to your preferred color */
+}
+
+.forgotpassword-input-container {
+  position: relative;
+}

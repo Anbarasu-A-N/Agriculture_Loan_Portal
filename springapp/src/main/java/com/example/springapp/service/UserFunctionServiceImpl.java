@@ -1,3 +1,5 @@
+
+
 package com.example.springapp.service;
 
 import java.util.List;
@@ -7,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 import com.example.springapp.entity.Users;
 import com.example.springapp.repository.UserFunctionRepository;
 
@@ -61,7 +62,7 @@ public class UserFunctionServiceImpl implements UserFunctionService {
     }
 
 
-   
+  
     
     @Override
     public Users login(String emailId, String password) {
@@ -75,6 +76,7 @@ public class UserFunctionServiceImpl implements UserFunctionService {
             return null;
         }
     }
+    
 
 
     @Override
@@ -157,9 +159,6 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 
 
 
-
-
-
-
-
 }
+
+/* */

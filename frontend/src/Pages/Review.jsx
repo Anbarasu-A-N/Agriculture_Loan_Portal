@@ -46,6 +46,7 @@ const Review = () => {
   const handleSubmitReview = async (e) => {
     e.preventDefault();
     try {
+      const userId = localStorage.getItem('userId');
       // Ensure user and user.emailId are not null before making the request
       if (user && user.emailId) {
         const response = await axios.post(`${BASE_URL}/reviews/add`, {
@@ -58,6 +59,7 @@ const Review = () => {
           headers: {
             'Authorization': `Bearer ${token}` // Pass the token in the request headers
           },
+          params: { userId }, // Add userId as a parameter in the request
         });
 
         console.log('Review submitted successfully:', response.data);

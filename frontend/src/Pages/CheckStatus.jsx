@@ -17,6 +17,7 @@ const CheckStatus = () => {
     const fetchLoanStatus = async () => {
       try {
         const emailId = localStorage.getItem('emailId');
+        const userId = localStorage.getItem('userId'); // Get userId from localStorage
 
         if (!emailId) {
           console.error('EmailId not found in local storage');
@@ -27,6 +28,7 @@ const CheckStatus = () => {
           headers: {
             'Authorization': `Bearer ${token}` // Pass the token in the request headers
           },
+          params: { userId }, // Pass userId as a query parameter only for POST method
         });
         
         setLoanStatusList(response.data);

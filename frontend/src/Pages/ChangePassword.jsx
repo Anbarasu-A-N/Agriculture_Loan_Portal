@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ChangePassword.css';
@@ -51,6 +58,8 @@ const ChangePassword = () => {
     e.preventDefault();
   
     try {
+      
+      const userId = localStorage.getItem('userId'); // Get userId from localStorage
       await axios.put(`${BASE_URL}/userfunction/change-password`, {
         emailId: emailId,
         oldPassword,
@@ -59,6 +68,7 @@ const ChangePassword = () => {
         headers: {
           'Authorization': `Bearer ${token}` // Pass the token in the request headers
         },
+        params: { userId }, // Pass userId as a query parameter only for POST method
       });
   
       setReset(true);

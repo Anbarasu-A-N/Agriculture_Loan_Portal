@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import "./ApplyLoan.css";
@@ -156,10 +155,13 @@ const ApplyLoan = () => {
       try {
         setSubmitting(true);
 
+        const userId = localStorage.getItem('userId'); // Get userId from localStorage
+
         const response = await axios.post(`${BASE_URL}/loanApplications`, formData, {
           headers: {
             'Authorization': `Bearer ${token}` // Pass the token in the request headers
           },
+          params: { userId }, // Pass userId as a query parameter only for POST method
         });
 
         console.log('Loan application submitted successfully:', response.data);

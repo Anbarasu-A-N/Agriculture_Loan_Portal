@@ -1,6 +1,126 @@
 
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import "./ForgotPwd.css";
+import { BASE_URL } from '../Config.jsx';
+import { useSelector } from 'react-redux'; // Import useSelector from react-redux
+import Hide from "../Pages/Images/Hide-password.png";
+
+const ForgotPwd = () => {
+  const token = useSelector(state => state.token); // Access token from Redux store
+  const [emailId, setEmailId] = useState('');
+  const [otp, setOtp] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false); // Added loading state
+  const [otpSent, setOtpSent] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const sendOtp = () => {
+    setLoading(true);
+  
+    axios.post(`${BASE_URL}/userfunction/sendOtp?emailId=${emailId}`, null, { withCredentials: true })
+      .then(response => {
+        setMessage(response.data);
+  
+        if (response.data === 'OTP sent successfully') {
+          setOtpSent(true);
+        }
+      })
+      .catch(error => {
+        console.error('Error sending OTP:', error);
+        setMessage('Error sending OTP');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const verifyOtpAndUpdatePassword = () => {
+    axios.post(`${BASE_URL}/userfunction/verifyOtpAndUpdatePassword?emailId=${emailId}&otp=${otp}&newPassword=${newPassword}`, { withCredentials: true })
+      .then(response => {
+        setMessage(response.data);
+      })
+      .catch(error => {
+        console.error('Error verifying OTP and updating password:', error);
+        setMessage('Error verifying OTP and updating password');
+      });
+  };
+
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <center>
+        <h1 id='forgot-h1'>Allsmart Agritech Finance Manager</h1>
+        <div className="forgot-container">
+          <h2 id='forgot'>Forgot Password</h2>
+          <div className='forgot-con'>
+            <div>
+              <label id='forgot-label'>Email:</label>
+              <input id='forgot-input' type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} />
+            </div>
+            <center>
+              <div>
+                <button id="forgot" onClick={sendOtp} disabled={loading}>{loading ? 'Sending OTP...' : 'Send OTP'}</button>
+              </div>
+            </center>
+            
+            {otpSent && (
+              <div>
+                <label id='forgot-label'>OTP:</label>
+                <input id='forgot-input' autoComplete="off"  type="number" value={otp} onChange={(e) => setOtp(e.target.value)} />
+                <br /><br />
+                
+                <div className="forgotpassword-input-container">
+                <label id='forgot-label'>New Password:</label>
+                <input
+                      type={showPassword ? 'text' : 'password'}
+                      value={newPassword}
+                      onChange={(e) => {
+                        const inputRegex = /^[A-Za-z0-9]*$/; // Regular expression for A-Z, a-z, and 0-9
+                        if (inputRegex.test(e.target.value) || e.target.value === '') {
+                          setNewPassword(e.target.value);
+                        }
+                      }}
+                      id='forgot-input'
+                      autoComplete='off'
+                      required
+                      pattern="[A-Za-z0-9]*"
+                    />
+
+                  <span
+                    className={`forgotpassword-toggle-icon ${showPassword ? 'visible' : ''}`}
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ?  '👁️‍🗨️' : <img src={Hide} id='forgothide' alt='forgothide' />}
+                  </span>
+                </div>
+                <br />
+                <button id="forgot" onClick={verifyOtpAndUpdatePassword}>Verify and Update Password</button>
+              </div>
+            )}
+            {message && <p id="forgot">{message}</p>}
+          </div>
+          <br/>
+          <center>
+            <div className="pwd-links">
+              <button id="forgot" onClick={() => navigate('/login')}>Go to Login</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button id="forgot" onClick={() => navigate('/signup')}>Go to Register</button>
+            </div>
+          </center>
+        </div>
+      </center>
+    </>
+  );
+};
+
+export default ForgotPwd;
 
 
+/*
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -75,6 +75,9 @@ public class UserFunctionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
+
     
     @GetMapping("/getImage/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
@@ -98,7 +101,7 @@ public class UserFunctionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+   
 
     
     @Autowired
@@ -107,10 +110,10 @@ public class UserFunctionController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @PostMapping("/{userid}/uploadImage")
-    public ResponseEntity<String> uploadImage(@PathVariable Integer userid, @RequestParam MultipartFile file) {
+    @PostMapping("/{userId}/uploadImage")
+    public ResponseEntity<String> uploadImage(@PathVariable Integer userId, @RequestParam MultipartFile file) {
         try {
-        	Users userFunction = userFunctionRepository.findById(userid).orElse(null);
+        	Users userFunction = userFunctionRepository.findById(userId).orElse(null);
 
             if (userFunction == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
@@ -120,7 +123,7 @@ public class UserFunctionController {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
             // Generate a unique file name to avoid overwriting existing files
-            String uniqueFileName = userid + "_" + System.currentTimeMillis() + "_" + fileName;
+            String uniqueFileName = userId + "_" + System.currentTimeMillis() + "_" + fileName;
 
             // Save the file to the server
             Path directoryPath = Paths.get(uploadPath);
@@ -145,6 +148,7 @@ public class UserFunctionController {
         }
     }
 
+ 
 
 
     @Autowired
@@ -227,7 +231,8 @@ public class UserFunctionController {
         }
     }
     
-     */
+    */
+
     
     @Autowired
     private PasswordEncoder passwordEncoder; // Inject PasswordEncoder
@@ -251,6 +256,11 @@ public class UserFunctionController {
             return new ResponseEntity<>("Invalid OTP or user not found", HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    
+
+    
 
     @PutMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {

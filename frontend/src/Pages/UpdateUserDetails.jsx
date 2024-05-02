@@ -72,7 +72,7 @@ const UpdateUserDetails = () => {
     try {
       const token = localStorage.getItem('token'); // Retrieve token from localStorage
       const emailId = localStorage.getItem('emailId');
-      
+      const userId = localStorage.getItem('userId'); // Get userId from localStorage
       // Ensure token and emailId are present
       if (!token || !emailId) {
         setMessage('Token or emailId not found');
@@ -87,6 +87,7 @@ const UpdateUserDetails = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        params: { userId }, // Pass userId as a query parameter only for POST method
       };
 
       // Send the PUT request
@@ -174,7 +175,11 @@ const UpdateUserDetails = () => {
             <label>
               Mobile: 
              
-              <input  id='userdetails-input'type="text" name="mobile" value={userDetails.mobile} onChange={handleChange} />
+              <input  id='userdetails-input'type="text" name="mobile" value={userDetails.mobile} onChange={handleChange} 
+              minLength={10}
+              maxLength={10}
+              required
+              />
             </label>
             <center>
             

@@ -16,7 +16,7 @@ import lombok.NonNull;
 public class RegisterRequest {
 
     @NonNull
-    private Integer userid;
+    private Integer userId;
 
     @NonNull
     private String firstName;
@@ -35,6 +35,9 @@ public class RegisterRequest {
 
     @NonNull
     private String password;
+
+    @NonNull
+    private String countryCode;
 
     @Column(nullable = false)
     private long mobile;
